@@ -1,0 +1,555 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{microtype}
+\emergencystretch=1em
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\newtheorem{postulate}{Postulate}
+\newtheorem{proposition}{Proposition}
+
+\title{Gravity as Constraint Compliance:\\A Thermodynamic Framework for Quantum Gravity}
+
+\author{Ian Todd\\
+Sydney Medical School\\
+University of Sydney\\
+Sydney, NSW, Australia\\
+\texttt{itod2305@uni.sydney.edu.au}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We reinterpret Jacobson's local-horizon Clausius relation as an admissibility constraint enforced by local null screens, rather than as emergent thermodynamics of spacetime. In this view, the quantized subsystem is the constraint interface, not the metric. Classical Einstein dynamics arise as the mean-field compatibility condition across all local certifications. Departures from ideal certification generate two correction channels: (i) stochastic focusing noise in the null Raychaudhuri equation, with variance suppressed by $\ell_P^2/A$ and distinct from stress-energy noise; and (ii) higher-curvature effective corrections associated with entropy production in non-equilibrium certification. Restoring constants identifies $\hbar$ with the interface's resolution scale via $\Delta A_{\min} \sim G\hbar$.
+\end{abstract}
+
+\section{Introduction}
+
+\textit{Conventions.} We use units with $c = k_B = 1$ throughout. We set $\hbar = 1$ except in Section 6, where we restore it to identify the certification resolution scale.
+
+\medskip
+
+\noindent\textbf{Core claim.} We reinterpret Jacobson's local-horizon Clausius relation as a \emph{local admissibility constraint} rather than emergent thermodynamics. Quantum gravity then describes the failure modes of this certification layer---stochastic focusing noise from finite resolution, curvature-squared corrections from non-equilibrium response---without quantizing the metric itself.
+
+\medskip
+
+Jacobson's thermodynamic derivation of Einstein's equation \citep{jacobson1995thermodynamics} demonstrates that general relativity can emerge from local horizon thermodynamics: if every local Rindler horizon carries entropy proportional to area and energy flux obeys a Clausius relation, then the spacetime metric must satisfy Einstein's field equations. This suggests gravity may be an equation of state rather than a fundamental interaction \citep{padmanabhan2010thermodynamical}.
+
+Yet thermodynamic derivations leave a central question unanswered: what, exactly, should be quantized? The standard interpretation locates microscopic degrees of freedom ``behind'' the horizon, with horizon entropy counting these states. But this framing inherits all the difficulties of quantum gravity: what are these microstates? How do they give rise to spacetime?
+
+We propose a different answer: quantize the \emph{constraint interface}, not spacetime. Null surfaces function as certification layers that validate whether proposed metric deformations are admissible. The Clausius relation $\delta Q = T\,\delta S$ is not emergent thermodynamics but an admissibility condition. Einstein's equation emerges as the compatibility requirement across all local certifications. Quantum gravity describes what happens when certification is finite-resolution, fluctuating, or non-equilibrium.
+
+\textit{What is new.} The derivation in Section 2 follows Jacobson's construction. The novelty is threefold:
+\begin{enumerate}[noitemsep]
+    \item \textbf{Localized quantumness.} We identify the quantized subsystem as the interface certification layer itself---not unspecified ``horizon microstates'' and not the metric.
+    \item \textbf{Distinct noise channel.} Certification fluctuations yield stochastic focusing noise (scaling as $\ell_P^2/A$) that is \emph{independent} of stress-energy fluctuations. This differs from Einstein--Langevin stochastic gravity, where noise derives from $\langle T_{\mu\nu} T_{\rho\sigma} \rangle$ correlators.
+    \item \textbf{Dissipative response as curvature corrections.} Non-equilibrium certification generates entropy production that maps to curvature-squared terms. This differs from Eling--Jacobson non-equilibrium horizon thermodynamics \citep{eling2006nonequilibrium} in ontology: we interpret it as non-ideal interface response, not as ``non-equilibrium thermodynamics of spacetime.''
+\end{enumerate}
+These are concrete, separable predictions---not relabeling. The certification-noise channel, in particular, is a distinct observable signature (even if practically inaccessible): state-dependent focusing variance not tied to matter correlators.
+
+We remain agnostic about microscopic ontology; references to an underlying ``configuration space'' denote only the space of admissible states consistent with interface constraints, not a commitment to any particular microphysics.
+
+\subsection{Scale Structure}
+
+We use ``dimensionality'' in the effective-degrees-of-freedom sense: the metric is an IR object compatible with many microconfigurations, while null screens are UV finite-capacity constraints. The metric is high-dimensional because the constraint interface is low-capacity: no finite-energy measurement can resolve the full compatible class of admissible embeddings.
+
+\subsection{Implications for Thermodynamic Gravity}
+
+Under this view, Jacobson's derivation acquires a new interpretation:
+\begin{itemize}[noitemsep]
+    \item The null screen is a \emph{low-dimensional UV interface} enforcing finite certification capacity.
+    \item The metric is an \emph{IR high-dimensional object}---a globally consistent embedding of constraint-satisfying configurations.
+    \item The Clausius relation $\delta Q = T\,\delta S$ is a \emph{local admissibility condition}, not emergent thermodynamics.
+\end{itemize}
+
+Einstein's equation emerges as the compatibility condition ensuring all local certifications are mutually consistent. Gravity is classical in the same sense that hydrodynamics is classical: it describes averaged constraint compliance.
+
+The question of quantum gravity becomes: what happens when certification fails to be ideal? This paper answers: stochastic focusing noise (finite resolution) and curvature-squared corrections (non-equilibrium response).
+
+\textit{Roadmap.} Section 2 reinterprets Jacobson's derivation. Section 3 formalizes the framework. Section 4 derives stochastic corrections. Section 5 develops non-equilibrium corrections. Section 6 interprets $\hbar$ as certification resolution. Section 7 relates to existing approaches. Section 8 discusses implications.
+
+\section{Thermodynamic Gravity as Constraint Certification}
+
+We reinterpret the standard thermodynamic derivation of Einstein's equation in terms of constraint interfaces.
+
+\textbf{Operational definitions.} By \emph{admissibility} we mean that a proposed metric deformation is consistent with: (i) local causal structure (existence of well-defined null surfaces), (ii) the finite information-flow capacity of those surfaces, and (iii) the Clausius-type balance between energy flux and entropy change. \emph{Certification} is the process by which a local null screen validates that a given deformation satisfies these conditions. Operationally, ``failure of certification'' corresponds to situations where the Clausius balance cannot hold exactly---leading to entropy production, stochastic corrections, or (at extremes) breakdown of the semiclassical metric description. Observable signatures could in principle include modified gravitational lensing statistics, state-dependent effective couplings, and higher-curvature corrections to propagation.
+
+\subsection{Local Null Screens as Constraint Interfaces}
+
+Consider an arbitrary spacetime point $p$ and a future-directed null vector $k^\mu$ at $p$. There exists a local null surface $\Sigma$ generated by a congruence of null geodesics with tangent $k^\mu$, affinely parametrized by $\lambda$. This surface defines a local causal boundary---a Rindler horizon for accelerated observers.
+
+In the standard interpretation, this horizon carries entropy proportional to area:
+\begin{equation}
+    S = \eta A,
+\end{equation}
+where $\eta$ is a universal constant setting the gravitational coupling. We interpret this differently: $S$ is the \emph{certification capacity} of the interface. It quantifies how much IR coherence structure the interface can validate as admissible. Crucially, we do not interpret $\delta S$ as counting geometric microstates; it counts certification states or coarse-graining outcomes at the interface.
+
+\subsection{The Generalized Clausius Constraint}
+
+Following Jacobson's construction, we define the \emph{boost energy} (or modular energy) flux through the null surface:
+\begin{equation}
+    \delta Q = \int_\Sigma \kappa\, \lambda\, T_{\mu\nu} k^\mu k^\nu \, d\lambda\, dA.
+\end{equation}
+Here $\delta Q$ is not physical energy but the generator of boosts along the approximate Killing vector $\chi^\mu = \kappa \lambda k^\mu$ near the bifurcation surface, with $d\Sigma^\nu = k^\nu d\lambda\, dA$. The factor $\kappa\lambda$ is the boost weight. When we impose the Clausius relation with Unruh temperature $T = \kappa/2\pi$, the $\kappa$ factors cancel, yielding a result independent of the normalization choice---as required for physical predictions. This flux ``loads'' the constraint interface---it represents a deformation of the IR coherence embedding that must be certified as admissible.
+
+The Clausius relation
+\begin{equation}
+    \delta Q = T\, \delta S
+\end{equation}
+with Unruh temperature $T = \kappa/2\pi$ \citep{unruh1976notes} (in units with $\hbar = 1$; $\kappa$ is surface gravity) expresses the certification condition: any allowed deformation must respect the interface's finite capacity.
+
+In the presence of non-ideal certification, we generalize to
+\begin{equation}
+    \delta Q = T(\delta S + \delta S_{\text{prod}}),
+    \label{eq:gen_clausius}
+\end{equation}
+where $\delta S_{\text{prod}}$ represents entropy production from shear, dissipation, or finite certification resolution.
+
+\subsection{Derivation of Einstein's Equation}
+
+The change in certification entropy along the null congruence is governed by the Raychaudhuri equation:
+\begin{equation}
+    \frac{d\theta}{d\lambda} = -\frac{1}{2}\theta^2 - \sigma_{\mu\nu}\sigma^{\mu\nu} - R_{\mu\nu}k^\mu k^\nu,
+\end{equation}
+where $\theta$ is the expansion and $\sigma_{\mu\nu}$ is the shear.
+
+In the semiclassical limit with negligible entropy production, evaluating to first order around $\lambda = 0$ with $\theta(0) = 0$ yields
+\begin{equation}
+    \delta S = -\eta \int_\Sigma \lambda\, R_{\mu\nu}k^\mu k^\nu\, d\lambda\, dA.
+\end{equation}
+
+Imposing the Clausius constraint $\delta Q = T\,\delta S$ and canceling integration factors gives
+\begin{equation}
+    R_{\mu\nu}k^\mu k^\nu = \frac{2\pi}{\eta} T_{\mu\nu}k^\mu k^\nu
+\end{equation}
+for all null vectors $k^\mu$ at $p$. Since this holds for all null directions, it implies
+\begin{equation}
+    R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G\, T_{\mu\nu},
+\end{equation}
+with $G = 1/4\eta$ and $\Lambda$ appearing as an integration constant.
+
+\subsection{Interpretation: Gravity as Constraint Compliance}
+
+Einstein's equation does not describe fundamental spacetime dynamics. It is the \emph{mean-field compatibility condition} ensuring that the high-dimensional space of admissible configurations admits a consistent low-dimensional embedding under all local constraint interfaces.
+
+The universality of Einstein's equation reflects the universality of the constraint structure, not of any particular underlying microphysics. Different configuration spaces satisfying the same constraint interface conditions will produce the same macroscopic gravity.
+
+\subsection{What Changes Relative to Jacobson's Interpretation}
+
+The reinterpretation developed here shares the mathematical structure of Jacobson's derivation but differs in one key assumption:
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{The assumption that changes:}\\[2pt]
+\emph{Standard reading:} $\delta S$ is horizon entropy change of underlying spacetime microstates.\\[2pt]
+\emph{This paper:} $\delta S$ is the interface's certification entropy change; microstructure belongs to the certification map $\mathcal{C}$, not to ``spacetime itself.''}}
+\medskip
+
+\noindent The geometric steps and algebra giving Einstein's equation in the mean-field limit remain identical. What changes is where quantumness resides and what corrections arise from finite resolution. Specifically:
+\begin{itemize}[noitemsep]
+    \item \textbf{What is quantized.} Jacobson's framework leaves open what microscopic degrees of freedom underlie horizon entropy. We propose quantizing the \emph{constraint interface} (the certification layer), not spacetime geometry itself.
+    \item \textbf{Additional noise channel.} Beyond stress-energy fluctuations (which source Einstein--Langevin noise), certification fluctuations at interfaces introduce a distinct stochastic term in the Raychaudhuri equation, scaling as $\kappa^3 \ell_P^2/A$.
+    \item \textbf{Entropy production as dissipation.} Non-equilibrium certification response generates entropy production terms that map to higher-curvature corrections---a direct prediction rather than a separately posited modification of GR.
+    \item \textbf{Interpretation of $\hbar$.} Rather than appearing as a generic quantum scale, $\hbar$ is identified with the resolution limit of constraint certification (minimal distinguishable area increment).
+    \item \textbf{Falsifiability.} The two correction channels (stochastic noise + curvature-squared terms) provide concrete, separable signatures---even if observationally inaccessible except near Planckian regimes.
+\end{itemize}
+The nontrivial content is thus the localization of quantumness to interfaces plus the derivation of two correction mechanisms from interface limitations.
+
+\subsection{The Certification Channel: Formal Structure}
+
+To avoid ambiguity about what ``certification'' means operationally, we specify the abstract structure without committing to a particular micro-model.
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{Definition (Certification).} A \emph{certification interface} $\Sigma$ is characterized by:
+\begin{enumerate}[noitemsep]
+    \item A finite state space $\mathcal{S}_\Sigma$ with $|\mathcal{S}_\Sigma| \sim e^{\eta A_\Sigma}$
+    \item A certification map $\mathcal{C}: \text{(flux data on }\Sigma) \to \text{Prob}(\text{geometric responses})$
+    \item An admissibility condition: $\delta g_{\mu\nu}$ is \emph{admissible} iff the induced $(\delta Q, \delta S)$ satisfies the Clausius constraint within the interface's resolution
+\end{enumerate}}}
+\medskip
+
+\textbf{State space.} The interface state $s \in \mathcal{S}_\Sigma$ is not directly observable from the IR; only the entropy $S_\Sigma = \log|\{s : s \text{ compatible with IR data}\}|$ is accessible. In semiclassical states, $\langle S_\Sigma \rangle = \eta A_\Sigma$, but the realized entropy (given the actual microstate) fluctuates.
+
+\textbf{Certification map.} Given stress-energy flux $T_{\mu\nu}k^\mu k^\nu$ across $\Sigma$, the interface outputs a probability distribution over geometric responses $\delta g_{\mu\nu}$. In the classical limit, this distribution is sharply peaked around the Einstein-compatible response. Quantum corrections correspond to the variance and higher moments of this distribution.
+
+\textit{Minimal structure requirements for $\mathcal{C}$:}
+\begin{itemize}[noitemsep]
+    \item \textbf{Locality:} $\mathcal{C}$ depends only on data in a neighborhood of $\Sigma$ (flux through the screen, not distant matter).
+    \item \textbf{Normalization invariance:} Under $k^\mu \to \alpha k^\mu$, physical predictions are unchanged (the map respects reparameterization freedom).
+    \item \textbf{Diffeomorphism covariance:} $\mathcal{C}$ depends only on scalar/invariantly-specified data on $\Sigma$ (e.g., $T_{\mu\nu}k^\mu k^\nu$ and intrinsic screen geometry), not on coordinate artifacts.
+    \item \textbf{Causality:} $\mathcal{C}$ depends only on data in the causal past of $\Sigma$.
+    \item \textbf{Composition:} Overlapping screens must yield compatible predictions for shared observables; this is enforced by the global compatibility condition (Postulate 6).
+\end{itemize}
+
+\textbf{Admissibility.} A proposed metric deformation $\delta g_{\mu\nu}$ is admissible at $\Sigma$ iff the certification map assigns it nonzero probability---equivalently, iff the induced heat flow and entropy change satisfy
+\begin{equation}
+    |\Delta_\Sigma| < \epsilon_\Sigma, \quad \text{where} \quad \Delta_\Sigma \equiv \delta Q - T\delta S
+\end{equation}
+is the \emph{Clausius residual}. Here $\epsilon_\Sigma \sim k_B T \cdot \mathcal{O}(1)$ sets the certification tolerance. Classical GR corresponds to $\epsilon_\Sigma \to 0$; finite $\epsilon_\Sigma$ generates the stochastic corrections developed in Section 4.
+
+The Clausius residual $\Delta_\Sigma$ is the central object: it measures the mismatch between energy flux and certified entropy change. In the classical limit $\langle\Delta_\Sigma\rangle = 0$, recovering Einstein's equation. Stochastic corrections arise from $\text{Var}(\Delta_\Sigma) > 0$.
+
+\textit{Stochastic completion.} Treat $\Delta_\Sigma(\lambda)$ as a stochastic process with $\langle\Delta_\Sigma\rangle = 0$ and $\text{Var}(\Delta_\Sigma) > 0$. The noise term $\xi$ in the Raychaudhuri equation (Section 4) is the minimal addition required so that the integrated focusing functional $\mathcal{F}$ reproduces the admissibility tolerance $|\Delta_\Sigma| < \epsilon_\Sigma$ in distribution. This is not an ansatz: it is the unique leading-order stochastic completion of the admissibility constraint.
+
+\section{Postulates of the Framework}
+
+We formalize the framework through the following postulates.
+
+\begin{postulate}[Two-Layer Structure]
+Physical reality consists of two coupled layers: a high-dimensional space of admissible configurations encoding dynamical degrees of freedom, and a low-dimensional ultraviolet constraint interface realized as local null screens that enforce admissibility.
+\end{postulate}
+
+\begin{postulate}[Constraint Interfaces as Null Screens]
+The UV constraint layer comprises local null surfaces $\Sigma$, each acting as an information-flow interface with finite certification capacity $S_\Sigma$.
+\end{postulate}
+
+\begin{postulate}[Finite Certification Capacity]
+Each null screen carries certification entropy satisfying $\langle S_\Sigma \rangle = \eta A_\Sigma$ in semiclassical states, where $\eta$ sets the gravitational coupling.
+\end{postulate}
+
+\begin{postulate}[Generalized Clausius Constraint]
+Admissible evolution across each screen satisfies, at the level of expectation values in semiclassical states,
+\begin{equation}
+    \langle \hat{\delta Q}_\Sigma \rangle = T_\Sigma \left(\langle \hat{\delta S}_\Sigma \rangle + \langle \hat{\delta S}_{\text{prod},\Sigma} \rangle \right),
+\end{equation}
+where $T_\Sigma = \kappa/2\pi$ is the local Unruh temperature and $\delta S_{\text{prod}}$ is entropy production. We write this with operator hats to indicate that fluctuations around the semiclassical mean are permitted; the classical limit corresponds to negligible variance.
+\end{postulate}
+
+\begin{postulate}[Quantization of the Constraint Layer]
+Quantum structure resides in the constraint interfaces. Each screen $\Sigma$ is associated with a finite \emph{certification state space} $\mathcal{S}_\Sigma$ with $|\mathcal{S}_\Sigma| \sim e^{\eta A_\Sigma}$, so that the interface entropy $S_\Sigma = \log |\mathcal{S}_\Sigma|$ reproduces the area law. Discreteness arises from finite state counting, with minimum entropy increments $\Delta S_{\min} \sim \mathcal{O}(1)$ (see Section 6). The IR configuration space is not assumed to be fundamentally quantized.
+\end{postulate}
+
+\noindent\textit{Clarification on Postulate 5.} $\mathcal{S}_\Sigma$ is an effective state space describing interface degrees of freedom at scales where certification discreteness matters. It \emph{could} be represented as a Hilbert space in a quantum treatment, but we do not assume this structure. Rather:
+\begin{itemize}[noitemsep]
+    \item The interface has a finite state space encoding its certification capacity.
+    \item ``Entropy'' means log of accessible states---a counting measure, not an operator spectrum.
+    \item Fluctuations arise because the interface state is not precisely determined by IR data.
+    \item We do \emph{not} assume a global product $\prod_\Sigma \mathcal{S}_\Sigma$ over all screens.
+    \item Overlapping screens are handled by requiring that predictions for shared observables agree---enforced by the global compatibility condition (Postulate 6).
+\end{itemize}
+This is analogous to how local thermal equilibrium in hydrodynamics constrains global flow without requiring a single state space of all fluid configurations.
+
+\begin{postulate}[Emergent Metric]
+The spacetime metric $g_{\mu\nu}$ is the low-dimensional embedding selected (up to diffeomorphism) by the requirement that the semiclassical Clausius constraint hold across all local null screens.
+\end{postulate}
+
+\begin{postulate}[Quantum Gravitational Corrections]
+Quantum gravity effects arise from: (i) fluctuations in the interface entropy $S_\Sigma$, and (ii) non-vanishing entropy production $\delta S_{\text{prod},\Sigma}$.
+\end{postulate}
+
+\begin{proposition}[Classical Limit]
+Under Postulates 1--7, the requirement of semiclassical compatibility across all local null directions yields Einstein's field equations as the mean-field dynamics of the emergent metric (in the semiclassical, local-equilibrium limit).
+\end{proposition}
+
+The proof follows Section 2.3: imposing $\langle \delta Q \rangle = T\langle \delta S \rangle$ for all null vectors at each point forces the Einstein tensor to be proportional to the stress-energy tensor.
+
+\section{Fluctuations and Stochastic Gravity}
+
+Quantum gravitational effects arise from finite resolution and fluctuations at constraint interfaces.
+
+\subsection{Certification Fluctuations}
+
+By Postulate 5, the interface has a finite certification state space $\mathcal{S}_\Sigma$ with $|\mathcal{S}_\Sigma| \sim e^{\eta A_\Sigma}$. We distinguish two entropy measures:
+\begin{itemize}[noitemsep]
+    \item $S^{\max}_\Sigma = \log|\mathcal{S}_\Sigma| = \eta A_\Sigma$ \quad (capacity: total states available)
+    \item $S^{\text{eff}}_\Sigma(\text{IR data}) = \log|\{s \in \mathcal{S}_\Sigma : s \text{ compatible with IR data}\}|$ \quad (realized: states consistent with what the IR can ``see'')
+\end{itemize}
+In semiclassical states, $\langle S^{\text{eff}}_\Sigma \rangle \approx S^{\max}_\Sigma$, but the realized entropy fluctuates because the IR data do not fully determine the interface microstate. The variance
+\begin{equation}
+    \Delta S_\Sigma^2 = \langle (S^{\text{eff}}_\Sigma)^2 \rangle - \langle S^{\text{eff}}_\Sigma \rangle^2
+\end{equation}
+is generically nonzero. These fluctuations---in $S^{\text{eff}}$ at fixed $S^{\max}$---represent uncertainty in which geometric responses the interface will certify as admissible.
+
+\subsection{Stochastic Raychaudhuri Equation}
+
+Certification fluctuations induce stochastic corrections to focusing. We derive the leading-order form.
+
+The Clausius constraint links entropy change to flux: $\delta Q = T\,\delta S$. In Jacobson's derivation, this produces the relation $R_{\mu\nu}k^\mu k^\nu = (2\pi/\eta)\,T_{\mu\nu}k^\mu k^\nu$ for all null $k^\mu$. If the certified entropy $S_\Sigma$ fluctuates around its mean, the effective curvature source acquires a stochastic component.
+
+To see how, note the chain of relations:
+\begin{enumerate}[noitemsep]
+    \item $S_\Sigma = \eta A_\Sigma$, so $\delta S = \eta\,\delta A$
+    \item Area change along generators: $dA/d\lambda = A\theta$, so $\delta A = A\int \theta\,d\lambda$
+    \item Combining: $\delta S = \eta A \int \theta\,d\lambda$
+\end{enumerate}
+If $S_\Sigma$ fluctuates by $\delta S_{\text{fluc}}$ independently of the geometric $\eta\,\delta A$, this is equivalent to an ``effective'' area fluctuation $\delta A_{\text{eff}} = \delta S_{\text{fluc}}/\eta$. Differentiating, the corresponding expansion fluctuation is
+\begin{equation}
+    \delta\theta \sim \frac{1}{A}\frac{d(\delta A_{\text{eff}})}{d\lambda} = \frac{1}{\eta A}\frac{d(\delta S_{\text{fluc}})}{d\lambda}.
+\end{equation}
+The noise term $\xi$ in the Raychaudhuri equation represents $d(\delta\theta)/d\lambda$, i.e., the rate at which this effective expansion fluctuation evolves:
+\begin{equation}
+    \frac{d\theta}{d\lambda} = -\frac{1}{2}\theta^2 - \sigma_{\mu\nu}\sigma^{\mu\nu} - R_{\mu\nu}k^\mu k^\nu + \xi_\Sigma(\lambda),
+\end{equation}
+with (assuming vanishing vorticity)
+\begin{equation}
+    \xi_\Sigma(\lambda) \sim \frac{1}{\eta A_\Sigma} \frac{d^2(\delta S_{\text{fluc}})}{d\lambda^2}.
+    \label{eq:noise_form}
+\end{equation}
+Since $\eta = 1/(4G)$ in our conventions, the prefactor $1/(\eta A) = 4G/A$ correctly yields dimensions $[\text{length}]^{-2}$ for $\xi$ when $\delta S$ is dimensionless. The second derivative arises because $\theta$ is a first derivative of area, and the noise enters the equation for $d\theta/d\lambda$.
+
+\textit{Scaling estimate.} We now derive the \emph{leading-order scaling} of the noise correlator under explicit assumptions. This is a controlled estimate, not a unique derivation; different choices of assumptions would modify the coefficient but not the parametric scaling.
+
+\textit{Assumptions:}
+\begin{enumerate}[noitemsep]
+    \item \textbf{Approximate independence:} Certification fluctuations across Planck-area patches are approximately independent, giving central-limit scaling $\sim 1/N$ for $N \sim A/\ell_P^2$ patches. (Since $\theta = (1/A)\,dA/d\lambda$ is an \emph{average} over the cross-section, independent fluctuations in $N$ patches yield variance $\propto 1/N$, not $N$.)
+    \item \textbf{Near-equilibrium:} The interface is in a quasi-stationary state along the generators, so fluctuations are approximately Markovian.
+    \item \textbf{White noise:} Temporal correlations decay on a timescale $\tau \sim 1/\kappa$ set by the local Unruh temperature $T = \kappa/2\pi$. For macroscopic evolution much slower than $\tau$, we approximate as $\delta$-correlated.
+\end{enumerate}
+
+With these assumptions, dimensional analysis determines the correlator. Since $\theta$ has dimensions $[\text{length}]^{-1}$ and $\lambda$ has $[\text{length}]$, the noise $\xi$ has $[\text{length}]^{-2}$. For white noise, $\langle \xi \xi \rangle \propto \delta(\lambda - \lambda')$ with the delta carrying $[\text{length}]^{-1}$, so the amplitude must have $[\text{length}]^{-3}$.
+
+The minimal resolvable area is $\Delta A_{\min} \sim \ell_P^2 = G\hbar$, giving $\mathcal{O}(1)$ entropy fluctuation. Expressing the result in terms of temperature $T = \kappa/2\pi$ and correlation time $\tau \sim 1/\kappa$: the noise amplitude scales as (variance)/(correlation time) $\sim T^2/\tau \sim \kappa^3$. Thus:
+\begin{equation}
+    \langle \xi_\Sigma(\lambda)\, \xi_\Sigma(\lambda') \rangle \sim C_\Sigma \,\kappa^3\,\frac{G\hbar}{A_\Sigma}\, \delta(\lambda - \lambda'),
+\end{equation}
+where $C_\Sigma$ is a dimensionless, state-dependent coefficient (order unity in semiclassical states). The $\kappa^3$ scaling is not arbitrary: it reflects how thermal fluctuations at temperature $T \propto \kappa$ generate white noise with amplitude $\propto T^2$ and correlation time $\propto 1/T$.
+
+Relaxing Assumption 3 would replace the $\delta$-function with a finite-width correlator; relaxing Assumption 1 would modify the $1/A$ dependence.
+
+\textit{Normalization invariance.} Local Rindler horizons have a rescaling freedom: under $k^\mu \to \alpha k^\mu$, we have $\lambda \to \lambda/\alpha$ and $\kappa \to \alpha\kappa$. This might seem to make $\kappa^3$-dependent corrections observer-dependent.
+
+To see invariance explicitly, consider the integrated focusing functional
+\begin{equation}
+    \mathcal{F} = \int_{\lambda_0}^{\lambda_1} \theta(\lambda)\, d\lambda,
+\end{equation}
+which measures total fractional area change and determines physical observables like lensing magnification. Under rescaling: $\theta \to \alpha\theta$, $d\lambda \to d\lambda/\alpha$, so $\mathcal{F} \to \mathcal{F}$ (invariant). For the stochastic contribution, note that $\xi \to \alpha^2 \xi$ (since $\xi$ has dimensions $[\text{length}]^{-2}$), and $\delta(\lambda - \lambda') \to \alpha\,\delta(\lambda - \lambda')$. Combined with $\kappa \to \alpha\kappa$:
+\begin{equation}
+    \langle \xi\xi \rangle \sim \kappa^3 \frac{\ell_P^2}{A}\delta(\lambda - \lambda') \;\to\; \alpha^3 \kappa^3 \frac{\ell_P^2}{A} \cdot \alpha\,\delta(\lambda - \lambda') = \alpha^4 \langle \xi\xi \rangle.
+\end{equation}
+But the variance of $\mathcal{F}$ involves $\iint d\lambda\,d\lambda'\, \langle\xi\xi\rangle$, picking up $\alpha^{-2}$ from each integration. Thus $\text{Var}(\mathcal{F}) \to \alpha^4 \cdot \alpha^{-2} \cdot \alpha^{-2}\,\text{Var}(\mathcal{F}) = \text{Var}(\mathcal{F})$---invariant, as required.
+
+For physical horizons with intrinsic surface gravity (black holes, cosmological horizons), $\kappa$ is unambiguous. The $\kappa^3$ scaling simply reflects how fluctuations couple to horizon temperature.
+
+\textit{Observable proxy.} Though practically inaccessible, the signature has a concrete interpretation. The integrated focusing $\mathcal{F} = \int \theta\,d\lambda$ determines gravitational lensing magnification $\mu \propto e^{-2\mathcal{F}}$. Certification noise induces magnification fluctuations:
+\begin{equation}
+    \frac{\delta\mu}{\mu} \sim 2\,\delta\mathcal{F}, \quad \text{with} \quad \text{Var}(\delta\mathcal{F}) \sim \kappa^3 \frac{\ell_P^2}{A} \cdot \Delta\lambda,
+\end{equation}
+where $\Delta\lambda$ is the affine path length. For astrophysical sources ($A \sim r_S^2$, $\kappa \sim 1/r_S$), this gives $\text{Var}(\delta\mathcal{F}) \sim \ell_P^2/r_S^4 \cdot \Delta\lambda$---utterly negligible. The point is not detectability but the existence of a well-defined observable that \emph{would} distinguish certification noise from stress-energy noise if accessible.
+
+\subsection{Distinction from Einstein--Langevin Noise}
+
+This certification noise is \emph{distinct} from stress-energy fluctuations that source the Einstein--Langevin equation in stochastic gravity \citep{hu2008stochastic}. The differences are:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Source.} Einstein--Langevin noise derives from the stress-energy correlator $\langle T_{\mu\nu}(x) T_{\rho\sigma}(x') \rangle$. Certification noise derives from the interface state-counting: fluctuations in which geometric responses are certified as admissible, given fixed matter flux.
+
+    \item \textbf{Vacuum behavior.} Stress-energy fluctuations are minimized (though not eliminated) in vacuum states. Certification noise \emph{persists even when matter fluctuations are suppressed}, because the interface has finite resolution regardless of the matter content.
+
+    \item \textbf{Scaling.} Einstein--Langevin noise depends on the matter state and couples with powers of $G$ determined by the noise kernel. Certification noise has a clean $\ell_P^2/A$ suppression set by the interface's geometric properties.
+
+    \item \textbf{Correlation structure.} Matter noise is generically colored (nonlocal in time) with correlations determined by the quantum state. Our assumption of near-Markovian white noise is a modeling choice that could be relaxed; the key point is that the correlation structure is determined by interface dynamics, not matter correlators.
+\end{itemize}
+
+In principle, these sources are separable: one could construct states where matter fluctuations dominate, or where certification noise dominates (e.g., near-vacuum configurations with small screens). Whether this separation is practically accessible is a separate question from whether the sources are theoretically distinct.
+
+\subsection{Interpretation}
+
+The stochastic term does not represent random spacetime dynamics. It quantifies temporary failure of perfect certification: the interface cannot resolve arbitrarily fine distinctions in admissible embeddings.
+
+In this framework, quantum gravity effects manifest as \emph{noise in admissibility}, not as violent Planck-scale geometry fluctuations. This explains why classical gravity works so well: the suppression factor $\ell_P^2/A$ is of order $10^{-77}$ for stellar-mass black holes and utterly negligible for astrophysical or cosmological horizons. The point is \emph{conceptual localization of quantumness}, not near-term detectability.
+
+\textit{Why additive noise?} The stochasticity enters as additive noise in the Raychaudhuri equation (rather than, say, multiplicative noise in $\eta$ or $T$) because it represents fluctuations in the \emph{certification outcome} given a fixed flux---uncertainty in the geometric response, not in the thermodynamic parameters themselves. At leading order this is the minimal coupling consistent with the structure of the constraint. Regarding consistency with diffeomorphism constraints: the Bianchi identity $\nabla^\mu G_{\mu\nu} = 0$ is preserved \emph{in expectation} if $\langle \xi \rangle = 0$, which holds by construction. Fluctuations around the mean satisfy weaker constraints; a full treatment would require specifying the stochastic geometry formalism (e.g., stochastic parallel transport), which we leave to future work.
+
+\section{Entropy Production and Higher-Curvature Corrections}
+
+Non-equilibrium constraint certification generates corrections to Einstein's equation.
+
+\subsection{Geometric Origin of Entropy Production}
+
+The Clausius constraint $\delta Q = T\, \delta S$ assumes reversible (equilibrium) evolution. When the interface deviates from equilibrium---due to rapid evolution, strong gradients, or transient dynamics---entropy is produced. The question is: what geometric quantities control this production?
+
+The answer follows from requiring local, diffeomorphism-invariant structure. The relevant kinematic quantities on a null surface are the expansion $\theta$ and shear $\sigma_{\mu\nu}$ of the null generators. At leading order in a derivative expansion, entropy production must be quadratic in these (odd powers would violate time-reversal properties of dissipation):
+\begin{equation}
+    \delta S_{\text{prod}} = \int_\Sigma \left(\alpha\, \sigma_{\mu\nu}\sigma^{\mu\nu} + \beta\, \theta^2\right) \lambda\, d\lambda\, dA,
+\end{equation}
+where $\alpha, \beta > 0$ are transport-like coefficients encoding interface response. This is the horizon analog of viscous dissipation in hydrodynamics: shear and compression of the null congruence generate entropy just as shear and compression of a fluid do.
+
+\subsection{From Horizon Transport to Curvature-Squared Corrections}
+
+The bridge from horizon entropy production to spacetime curvature corrections proceeds as follows \citep{eling2006nonequilibrium, chirco2010nonequilibrium}:
+
+\begin{enumerate}[noitemsep]
+    \item \textbf{Horizon kinematics encodes curvature.} By the Raychaudhuri equation, $\theta$ and $\sigma_{\mu\nu}$ are sourced by $R_{\mu\nu}k^\mu k^\nu$ and $C_{\mu\nu\rho\sigma}k^\mu k^\rho$. Hence quadratic terms in expansion/shear correspond to quadratic terms in curvature.
+
+    \item \textbf{Compatibility across all null directions.} The Clausius constraint must hold for \emph{all} local null screens at each point. Just as in Jacobson's original derivation, this requirement translates horizon-level conditions into tensorial field equations.
+
+    \item \textbf{Effective action interpretation.} The modified field equations can be derived from varying an effective action with curvature-squared terms. The coefficients of these terms are determined by the transport coefficients $\alpha, \beta$.
+\end{enumerate}
+
+Schematically, the corrected field equations take the form
+\begin{equation}
+    G_{\mu\nu} + \Lambda g_{\mu\nu} + \ell^2 \mathcal{H}_{\mu\nu}^{(2)} + \mathcal{O}(\ell^4) = 8\pi G\, T_{\mu\nu},
+\end{equation}
+where $\ell^2 \sim G\hbar$ (Planck area) and $\mathcal{H}_{\mu\nu}^{(2)}$ denotes terms quadratic in curvature and its derivatives---including $R^2$, $R_{\mu\nu}R^{\mu\nu}$, $R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}$, and fourth-order terms like $\nabla_\mu\nabla_\nu R$ and $\Box R_{\mu\nu}$ that arise from varying curvature-squared actions. The coefficients depend on $\alpha, \beta$.
+
+No new \emph{fundamental} degrees of freedom are posited. These higher-curvature terms are interpreted as effective field theory corrections encoding non-ideal certification response---analogous to how viscosity terms in hydrodynamics arise from non-equilibrium effects without introducing new fundamental fields. The corrections are EFT-valid below the interface resolution scale $\ell_P$; at shorter scales, the effective description breaks down and a microscopic model of certification would be required.
+
+\subsection{Interpretation: Curvature as Certificate Strain}
+
+Higher curvature measures strain on the constraint interface:
+\begin{itemize}[noitemsep]
+    \item Small curvature: certification proceeds reversibly; Einstein gravity suffices.
+    \item Large curvature or rapid variation: certification becomes dissipative; entropy is produced.
+\end{itemize}
+
+This naturally explains why higher-curvature gravity behaves as an effective theory: the corrections encode properties of the certification interface, not fundamental spacetime microstructure.
+
+\subsection{What Changes in the Interpretation of $\alpha, \beta$?}
+
+The transport coefficients $\alpha, \beta$ appear in both Eling--Jacobson non-equilibrium thermodynamics and in our framework, but with different interpretations:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Eling--Jacobson:} $\alpha, \beta$ are horizon viscosity coefficients in a ``thermodynamics of spacetime'' picture. They characterize dissipative properties of the horizon fluid.
+    \item \textbf{This framework:} $\alpha, \beta$ are interface response parameters---properties of the certification layer $\mathcal{C}$, not of spacetime itself. They encode how the interface deviates from ideal (reversible) certification under strain.
+\end{itemize}
+
+What would count as an empirical distinction? In principle, $\alpha, \beta$ might depend on properties of the interface state (the class of screens, their embedding) rather than purely on matter content. If certification response varied with interface configuration in ways not reducible to local stress-energy, this would distinguish the frameworks. In practice, both predict the same curvature-squared corrections at leading order; the distinction is ontological.
+
+The coefficients are undetermined within this framework (see Limitations). They would need to be fixed by additional physical input---e.g., matching to a microscopic model of certification, or to observational constraints on higher-curvature corrections.
+
+\section{Planck's Constant as Certification Resolution}
+
+A central question in thermodynamic gravity is the role of $\hbar$. We interpret it as setting the resolution limit of constraint certification through its connection to the minimal resolvable area increment.
+
+\subsection{Minimal Area Increment and Certification Discreteness}
+
+In units where $c = k_B = 1$, the Planck area is $\ell_P^2 = G\hbar$. By Postulate 5, the interface has a finite certification state space with $|\mathcal{S}_\Sigma| \sim e^{\eta A_\Sigma}$, so interface entropy takes discrete values. The natural identification is that the minimal resolvable \emph{area} increment is of order $\ell_P^2$:
+\begin{equation}
+    \Delta A_{\min} \sim \ell_P^2 = G\hbar.
+\end{equation}
+To correctly track units, recall that with all constants restored, the Bekenstein-Hawking entropy is $S = k_B c^3 A/(4G\hbar)$. In our conventions ($c = k_B = 1$), this becomes $S = A/(4G\hbar)$, so the entropy-area coefficient is $\eta = 1/(4G\hbar)$. In Section 2 we wrote $\eta = 1/(4G)$, which is valid because we also set $\hbar = 1$ there. Restoring $\hbar$ here:
+\begin{equation}
+    \Delta S_{\min} \sim \eta \, \Delta A_{\min} = \frac{1}{4G\hbar} \cdot G\hbar = \frac{1}{4} \sim \mathcal{O}(1).
+\end{equation}
+The $\hbar$'s cancel, yielding an order-unity entropy increment as expected for a single ``quantum'' of certification. Certification entropy changes in discrete steps, with the Planck area $G\hbar$ setting the scale of the minimal resolvable geometric deformation. We do not assume discrete spacetime; discreteness enters only as finite certification resolution at interfaces.
+
+\subsection{Universality of $\hbar$}
+
+Within this framework, the universality of $\hbar$ is \emph{required} rather than explained: if certification resolution varied between observers, causal compatibility across horizons would fail. All observers must agree on null surfaces and causal structure; inconsistent resolution scales would produce inconsistent geometric responses.
+
+This is a \emph{consistency argument}, not a derivation. We do not explain \emph{why} certification resolution takes the particular value $\hbar$---only that, given one such scale, global coherence requires it to be universal. The numerical value of $\hbar$ remains an input, fixed by consistency with known physics (e.g., the Bekenstein-Hawking entropy).
+
+\subsection{Classical Limit}
+
+The classical limit corresponds to:
+\begin{itemize}[noitemsep]
+    \item Large screen areas: $A_\Sigma \gg \ell_P^2$, so $S_\Sigma \gg 1$
+    \item Small relative fluctuations: $\Delta S_\Sigma / S_\Sigma \ll 1$
+    \item Negligible entropy production
+\end{itemize}
+Discrete certification steps become effectively continuous, and quantum gravitational effects are suppressed by powers of $\ell_P^2/A$.
+
+\section{Relation to Other Approaches}
+
+\subsection{Thermodynamic Gravity}
+
+The framework builds on thermodynamic derivations of gravity but differs in interpretation. In standard thermodynamic gravity, horizon entropy emerges from microscopic spacetime degrees of freedom. Here, we take horizon thermodynamics as a constraint enforcement mechanism acting on an underlying configuration space. The Clausius relation is treated as an imposed admissibility constraint rather than an emergent macroscopic law.
+
+\subsection{Entanglement-Based Gravity}
+
+Entanglement approaches identify geometry with patterns of quantum entanglement \citep{ryu2006holographic, van2010emergent, swingle2012entanglement}, invoking area-entropy relations and deriving gravitational dynamics from entanglement equilibrium \citep{jacobson2016entanglement, lashkari2014gravitational, faulkner2014gravitation}. Our framework is compatible but ontologically distinct: entanglement entropy is interpreted as a certificate summarizing admissible coarse-grainings, not a count of microscopic geometric states. This avoids specifying a fundamental Hilbert space of spacetime.
+
+\subsection{Loop Quantum Gravity}
+
+Loop quantum gravity quantizes geometric operators, yielding discrete area and volume spectra \citep{rovelli1995discreteness, ashtekar2004background, bianchi2012horizon}. Our framework offers a complementary perspective on why such discreteness may appear without discrete spacetime: discreteness reflects finite certification resolution at interfaces, not necessarily fundamental geometry.
+
+\subsection{Semiclassical and Stochastic Gravity}
+
+Stochastic gravity \citep{hu2008stochastic, martin2005stochastic, calzetta2008nonequilibrium} introduces noise from stress-energy fluctuations into semiclassical Einstein equations. Our framework identifies an additional noise source: certification fluctuations at constraint interfaces. The interface's finite resolution determines the gravitational response, explaining why gravitational fluctuations need not mirror matter fluctuations directly.
+
+\subsection{Information-Geometric Perspective}
+
+The infrared coarse-graining produces a high-dimensional equivalence class of microconfigurations, but no infrared measurement has sufficient thermodynamic capacity to resolve this class. The Landauer cost \citep{landauer1961irreversibility} of extracting the required information exceeds available free energy; the coupling required would destroy the state. Dimensionality names the unmeasurable structure that exists in principle but is operationally inaccessible.
+
+This connects to information geometry: the relevant object is the geometry of the constraint-induced projection, not the measured data. Curvature arises from the obstruction to consistent certification.
+
+\subsection{Summary of Distinctions}
+
+Table~\ref{tab:comparison} summarizes how this framework relates to existing approaches.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{|p{2.5cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|p{2.5cm}|}
+\hline
+& \textbf{Jacobson} & \textbf{Eling--Jacobson} & \textbf{Einstein--Langevin} & \textbf{This work} \\
+\hline
+\textbf{What is quantized} & Unspecified (horizon microstates) & Unspecified & Matter fields (metric classical) & Constraint interfaces \\
+\hline
+\textbf{Clausius relation} & Emergent thermodynamics & Emergent + dissipation & Not used & Admissibility constraint \\
+\hline
+\textbf{Noise source} & None & None & $\langle T_{\mu\nu}T_{\rho\sigma}\rangle$ & Interface certification \\
+\hline
+\textbf{Higher-curvature terms} & Not derived & From entropy production & From semiclassical expansion & From non-equilibrium response \\
+\hline
+\textbf{Role of $\hbar$} & Via $T = \hbar\kappa/2\pi$ & Via $T = \hbar\kappa/2\pi$ & Sets matter fluctuations & Certification resolution \\
+\hline
+\end{tabular}
+\caption{Comparison of thermodynamic and stochastic approaches to gravity. Entries indicate characteristic features; see text for details.}
+\label{tab:comparison}
+\end{table}
+
+\section{Discussion}
+
+We have presented a framework in which classical spacetime geometry emerges as a mean-field compatibility condition enforced by local constraint interfaces. By distinguishing energetic scale from effective constraint dimensionality, we identified null surfaces as low-dimensional certification layers regulating admissible embeddings of a high-dimensional configuration space.
+
+Einstein's equation arises as an equation of state governing constraint compliance. Quantum gravitational effects originate from finite resolution, stochasticity, and non-equilibrium behavior at constraint interfaces, while the emergent metric remains a coarse-grained summary of globally consistent embeddings. This localizes quantumness: we quantize the certification layer, not spacetime itself.
+
+\medskip
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+\textbf{Summary.} In this framework, gravity is classical because it is an equation of state. Quantum gravity describes fluctuations of the constraints that make that state well-defined.}}
+\medskip
+
+The framework naturally incorporates higher-curvature corrections, stochastic gravitational effects, and a principled interpretation of Planck's constant as certification resolution. These arise without introducing new fundamental degrees of freedom or postulating discrete spacetime.
+
+\subsection{Limitations and Scope}
+
+Several caveats constrain the present development:
+\begin{itemize}[noitemsep]
+    \item \textbf{No microphysical derivation.} We do not derive the certification state space $\mathcal{S}_\Sigma$ from first principles. The framework identifies \emph{where} quantumness resides (interfaces) and \emph{how} it manifests (stochastic noise, curvature corrections), but remains agnostic about the underlying microphysics.
+    \item \textbf{Noise modeling assumptions.} The white-noise, Markovian treatment of certification fluctuations (Section 4.2) is a simplifying assumption. More realistic models would likely involve colored noise with correlation structure determined by interface dynamics.
+    \item \textbf{Transport coefficients undetermined.} The non-equilibrium coefficients $\alpha, \beta$ in Section 5 are free parameters in this framework. Fixing them requires either additional physical input or contact with observations.
+    \item \textbf{Practical inaccessibility.} The signatures we identify (focusing noise, curvature-squared corrections) are suppressed by $\ell_P^2/A$ and thus observationally inaccessible except near Planckian regimes. The value is conceptual clarification, not near-term phenomenology.
+    \item \textbf{Overlapping screens.} We assume that overlapping certification interfaces yield compatible predictions (Postulate 6), but do not derive this compatibility from more primitive assumptions. A complete treatment would need to specify how interface state spaces compose.
+\end{itemize}
+
+\subsection{Open Questions}
+
+Several directions remain open. Explicit characterization of the infrared configuration space would enable quantitative predictions. The phenomenology of stochastic focusing and its observational signatures warrants investigation. Extension to cosmological horizons may illuminate the thermodynamic origin of the cosmological constant.
+
+Despite these open questions, the framework establishes a coherent foundation for thermodynamic quantum gravity. By locating quantumness at the interfaces that certify admissibility, it reconciles the universality of general relativity with the necessity of quantum corrections. The difficulty of quantum gravity may lie not in quantizing spacetime, but in understanding the finite-resolution mechanisms that make spacetime a consistent classical description.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\appendix
+
+\section{Speculative: Uncertainty from Modular Flow}
+
+The following remarks are conjectural; they motivate the framework but are not required for its main claims. \textbf{Nothing in Sections 1--8 depends on this appendix.}
+
+When energy-momentum crosses a null screen, the interface updates its certification state. Let $K$ denote the boost energy conjugate to the affine parameter $\lambda$ along null generators---the generator of affine translations on the null surface, which for a local Rindler wedge reduces to the modular Hamiltonian. This identification draws on the entanglement first law tradition, where variations in modular energy are conjugate to variations in entanglement entropy (and hence, via area-entropy relations, to area variations) \citep{faulkner2014gravitation, lashkari2014gravitational}.
+
+If $K$ and $A$ do not commute in a quantum treatment---as suggested by the non-commutativity of modular flow and geometric deformations---one expects an uncertainty relation of the form
+\begin{equation}
+    \Delta K \, \Delta A \gtrsim \hbar.
+\end{equation}
+This is a \emph{motivated analogy}, not a derived result. A rigorous derivation would require specifying an operator algebra on the certification state space $\mathcal{S}_\Sigma$ and showing that $K$ and $A$ are non-commuting observables in that algebra. The intuition is that finite certification resolution prevents the interface from simultaneously fixing flux and geometric response to arbitrary precision.
+
+\end{document}
